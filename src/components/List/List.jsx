@@ -1,5 +1,5 @@
-import React, { useState, useCallback, useRef, useEffect } from 'react';
-import { Table, notification } from 'antd';
+import React, { useState, useCallback, useRef, useEffect, Fragment } from 'react';
+import { Table, notification, Card, Divider, Alert } from 'antd';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
@@ -90,8 +90,11 @@ const List = ({info_data, columns, loading}) => {
     );
 
     return (
-        <DndProvider backend={HTML5Backend}>
-            <Table
+      <Fragment>
+        <Divider>Table List</Divider>
+        <Card title={<Alert message="We can sort, search and reorder our table data. After reordering an api will be called by post method but we can't get response." type="success" />}>
+          <DndProvider backend={HTML5Backend}>
+              <Table
                 columns={columns}
                 dataSource={data}
                 rowKey={record => record.key}
@@ -101,8 +104,10 @@ const List = ({info_data, columns, loading}) => {
                     index,
                     moveRow,
                 })}
-            />
-        </DndProvider>
+              />
+          </DndProvider>
+        </Card>
+      </Fragment>
     );
 };
 

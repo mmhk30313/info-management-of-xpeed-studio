@@ -1,12 +1,13 @@
 import React from 'react';
 import Highlighter from 'react-highlight-words';
 import { SearchOutlined } from '@ant-design/icons';
-import { Table, Input, Button, Space, notification } from 'antd';
+import { Input, Button, Space, notification } from 'antd';
 import { get_all_info } from '../../services/all_services';
 // import { DndProvider, useDrag, useDrop } from 'react-dnd';
 // import { HTML5Backend } from 'react-dnd-html5-backend';
 // import update from 'immutability-helper';
 import List from '../../components/List/List';
+import { Link } from 'react-router-dom';
 
 export default class Home extends React.Component {   
     constructor(props) {
@@ -33,18 +34,21 @@ export default class Home extends React.Component {
         const { data, status, messages } = res_data;
         notification.destroy();
         if(status) {
-            // messages.map(message => {
-            //     return notification.success({ notification: "Info Notification",message: message });
-            // });
+            messages.map(message => {
+                return notification.success({ notification: "Info Notification",message: message });
+            });
             const {headers, rows} = data;
             rows.map((row, idx) => {
-                row.key = idx
+                row.key = idx;
+                row.action = "Update";
             });
-            // console.log({rows, headers});
+            const header_data = headers[0];
+            header_data['action'] = {title: 'Action', hidden: false};
+            console.log({rows, header_data});
             const columns = headers.map((header) => {
                 const column_headers = [];
-                const column_data = Object.entries(header).map((entry, idx) => {
-                    // console.log({entry});
+                Object.entries(header).map((entry, idx) => {
+                    console.log({entry: entry[0]});
                     let colObj = {
                         title: entry[1].title,
                         dataIndex: entry[0],
@@ -53,11 +57,18 @@ export default class Home extends React.Component {
                         render: (text, record) => {
                             return (
                                 <div>
-                                    {text || ""}
+                                    {/* { text || ""} */}
+                                    {
+                                        entry[1].title === "Action"
+                                        ? <Link to={"/get-form?id="+record.id}>{text || ""}</Link>
+                                        : text || ""
+                                    }
+                                    
                                 </div>
                             )
                         },
-                    };
+                    }
+
                     entry[1].sortable && entry[0] === "id" 
                     ? (colObj.sorter = (a, b) => a[entry[0]] - b[entry[0]])
                     : entry[1].sortable && entry[0] === "created_at" 
@@ -67,6 +78,7 @@ export default class Home extends React.Component {
                     !entry[1].hidden && column_headers.push(colObj);
                     return colObj;
                 });
+
                 return column_headers;
             });
             console.log({columns, rows});
@@ -156,7 +168,7 @@ export default class Home extends React.Component {
     };
 
     render() {
-        const { searchText, searchedColumn, loading, data, columns, selectedRowKeys, selectedRows } = this.state;
+        const { loading, data, columns} = this.state;
         return (
             <div>
                 {/* <Table
