@@ -6,3 +6,11 @@ export const get_all_info = () => {
         header: "text/html; charset=utf-8",
     });
 }
+
+export const get_reorder_info_message = (data) => {
+    return request("/api/reorder.php", {
+        method: "post",
+        // header: "text/html; charset=utf-8",
+        body: data
+    });
+}

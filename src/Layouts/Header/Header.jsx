@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { PageHeader } from 'antd';
 import {
     BrowserRouter as Router,
@@ -15,13 +15,15 @@ const Header = () => {
             <div style={{backgroundColor: '#EBF2F7'}}>
                 <PageHeader 
                     
-                    title={<h2 style={{padding: 0, margin: 0}}>xPeed Studio</h2>}
+                    title={<h1 style={{padding: 0, margin: 0}}>xPeed Studio</h1>}
                     // subTitle="This is a subtitle"
                     // extra={[
                     subTitle={[
-                        <Link style={{margin: '0 7px' , color: '#7B7975'}} exact key={"1"} to="/">Table</Link>,
-                        <Link style={{marginLeft: "7px", color: '#7B7975'}} key={"2"} to="/get-form">Get Form</Link>,
-                        <a style={{marginLeft: "7px", color: '#7B7975'}} key={"3"} >Update Form</a>,
+                        <div style={{marginTop: 5}}>
+                            <Link style={{margin: '0 10px' , color: '#7B7975', fontSize: 16}} exact key={"1"} to="/">Table</Link>
+                            <Link style={{marginLeft: "10px", color: '#7B7975', fontSize: 16}} key={"2"} to="/get-form">Get Form</Link>
+                            <a style={{marginLeft: "10px", color: '#7B7975', fontSize: 16}} key={"3"} >Update Form</a>
+                        </div>
                     ]}
                 />
 
