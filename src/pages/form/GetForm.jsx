@@ -12,14 +12,14 @@ class GetForm extends Component {
         }
     }
 
-    componentDidMount = () => {
+    componentWillMount = () => {
         const query_string = window.location.search;
         const path = new URLSearchParams(query_string);
         const param = parseInt(path.get("id"));
         console.log({query_string, param});
         if(param){
             this.setState({id: param}, () => {
-                this.setState({loading: false, isEditable: false})
+                this.setState({loading: false, isEditable: true})
             })
         }else{
             setTimeout(()=> {
@@ -32,9 +32,11 @@ class GetForm extends Component {
         return (
             <Card title={!this.state.isEditable ? "Add Form" : "Updated Form"} loading={this.state.loading}>
                 {
+                    // !this.state.loading ?
+                    // : null
                     this.state.id
-                    ?  <AddForm />
-                    : <EditForm id={this.state.id}/>
+                    ? <EditForm id={this.state.id}/>
+                    :  <AddForm />
                 }
             </Card>
         );

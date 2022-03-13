@@ -94,6 +94,9 @@ export default class Home extends React.Component {
         }else{
             // console.log({messages});
             notification.error({notification: "Info Notification", message: messages || 'Something went wrong'});
+            setTimeout(() => {
+                this.setState({loading: false});
+            }, 1000);
         }
     };
 
