@@ -38,26 +38,28 @@ export default class Home extends React.Component {
                 return notification.success({ notification: "Info Notification",message: message });
             });
             const {headers, rows} = data;
-            rows.map((row, idx) => {
+            const dataSource = [];
+            await rows.map((row, idx) => {
                 row.key = idx;
                 row.action = "Update";
+                !row.extra_junk_field && dataSource.push(row);
             });
             const header_data = headers[0];
             header_data['action'] = {title: 'Action', hidden: false};
-            console.log({rows, header_data});
+            // console.log({rows, header_data, dataSource});
             const columns = headers.map((header) => {
                 const column_headers = [];
                 Object.entries(header).map((entry, idx) => {
-                    console.log({entry: entry[0]});
+                    // console.log({entry: entry[0]});
                     let colObj = {
                         title: entry[1].title,
                         dataIndex: entry[0],
                         // defaultSortOrder: 'descend',
                         key: idx,
                         render: (text, record) => {
+                            // record?.extra_junk_field && console.log({record});
                             return (
                                 <div>
-                                    {/* { text || ""} */}
                                     {
                                         entry[1].title === "Action"
                                         ? <Link to={"/get-form?id="+record.id}>{text || ""}</Link>
@@ -81,10 +83,11 @@ export default class Home extends React.Component {
 
                 return column_headers;
             });
-            console.log({columns, rows});
+            // console.log({columns, rows, dataSource});
             this.setState({
                 columns: columns[0],
-                data: rows,
+                // data: rows,
+                data: dataSource,
             }, () => {
                 setTimeout(() => {
                     this.setState({loading: false});

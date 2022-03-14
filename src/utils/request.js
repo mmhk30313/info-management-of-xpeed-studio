@@ -34,12 +34,10 @@ export const request = (link, params) => {
         // body: (params && params.body) || "",
         headers: headers,
     };
+    
     params?.body && (fetchConfig = {
         ...fetchConfig,
         data: params?.body,
-        headers: {
-            "Content-Type": "Access-Control-Allow-Headers"
-        }
     });
     // params?.method === 'post' && ( fetchConfig.headers);
     console.log({fetchConfig});
