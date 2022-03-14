@@ -12,10 +12,11 @@ import GetForm from '../../pages/form/GetForm';
 const Header = () => {
     return (
         <Router>
-            <div style={{backgroundColor: '#EBF2F7'}}>
+            <div style={{backgroundColor: '#EBF2F7', margin: "0 20px"}}>
                 <PageHeader 
                     
-                    title={<h1 style={{padding: 0, margin: 0}}>xPeed Studio</h1>}
+                    title={<h1 style={{padding: 0, margin: 0}}>MMHK Studio</h1>}
+                    // title={<h1 style={{padding: 0, margin: 0}}>xPeed Studio</h1>}
                     // subTitle="This is a subtitle"
                     // extra={[
                     subTitle={[
