@@ -4,7 +4,7 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
 import { get_reorder_info_message } from '../../services/all_services';
-const axios = require('axios');
+// const axios = require('axios');
 const type = 'DraggableBodyRow';
 const DraggableBodyRow = ({ index, moveRow, className, style, ...restProps }) => {
     const ref = useRef();
@@ -51,45 +51,45 @@ const List = ({info_data, columns, loading}) => {
     }, [info_data]);
 
     const components = {
-        body: {
-          row: DraggableBodyRow,
-        },
+      body: {
+        row: DraggableBodyRow,
+      },
     };
     
     const getting_reordering_info_message = async (data_obj) => {
       console.log({data_obj});
-        // const res_data = await get_reorder_info_message(data_obj);
-        // await axios.get('http://localhost/api/reorder.php?id='+data.id).then(res_data => {
-        await axios.post('http://localhost/api/reorder.php', {id: 141}).then(res_data => {
-            console.log({res_data});
-            const { data, status, messages } = res_data.data;
-            // console.log({res_data_data});
-            notification.destroy();
-            if(status) {
-                messages.map(message => {
-                    return notification.success({ notification: "Re-ordering Notification", message: message });
-                });
-            }else{
-              notification.error({ message: "Something wrong to get reorder notification" });;
-            }
-            
+      const res_data = await get_reorder_info_message(data_obj);
+      const { status, messages } = res_data;
+      // console.log({res_data_data});
+      notification.destroy();
+      if(status) {
+          messages.map(message => {
+              return notification.success({ notification: "Re-ordering Notification", message: message });
           });
-          // const { data, status, messages } = res_data;
-          // // console.log({res_data_data});
-          // notification.destroy();
-          // if(status) {
-          //     messages.map(message => {
-          //         return notification.success({ notification: "Re-ordering Notification", message: message });
-          //     });
-          // }else{
-          //   notification.error({ message: "Something wrong to get reorder notification" });;
-          // }
+      }else{
+        notification.error({ message: "Something wrong to get reorder notification" });;
+      }
+      // await axios.get('http://localhost/api/reorder.php?id='+data.id).then(res_data => {
+        // await axios.post('http://localhost/api/reorder.php', {id: 141}).then(res_data => {
+        //     console.log({res_data});
+        //     const { data, status, messages } = res_data.data;
+        //     // console.log({res_data_data});
+        //     notification.destroy();
+        //     if(status) {
+        //         messages.map(message => {
+        //             return notification.success({ notification: "Re-ordering Notification", message: message });
+        //         });
+        //     }else{
+        //       notification.error({ message: "Something wrong to get reorder notification" });;
+        //     }
+            
+        //   });
     }
 
     const moveRow = useCallback(
         (dragIndex, hoverIndex) => {
           const dragRow = data[dragIndex];
-          console.log({dragIndex});
+          // console.log({dragIndex});
           console.log({dragIndex, dragData: data[dragIndex]});
           getting_reordering_info_message({id: data[dragIndex].id});
           setData(
