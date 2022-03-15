@@ -58,32 +58,32 @@ const List = ({info_data, columns, loading}) => {
     
     const getting_reordering_info_message = async (data_obj) => {
       console.log({data_obj});
-        const res_data = await get_reorder_info_message(data_obj);
+        // const res_data = await get_reorder_info_message(data_obj);
         // await axios.get('http://localhost/api/reorder.php?id='+data.id).then(res_data => {
-        // // await axios.get('http://localhost/api/reorder.php?id='+data.id, {id: 141}).then(res_data => {
-        //     console.log({res_data});
-        //     const { data, status, messages } = res_data.data;
-        //     // console.log({res_data_data});
-        //     notification.destroy();
-        //     if(status) {
-        //         messages.map(message => {
-        //             return notification.success({ notification: "Re-ordering Notification", message: message });
-        //         });
-        //     }else{
-        //       notification.error({ message: "Something wrong to get reorder notification" });;
-        //     }
+        await axios.post('http://localhost/api/reorder.php', {id: 141}).then(res_data => {
+            console.log({res_data});
+            const { data, status, messages } = res_data.data;
+            // console.log({res_data_data});
+            notification.destroy();
+            if(status) {
+                messages.map(message => {
+                    return notification.success({ notification: "Re-ordering Notification", message: message });
+                });
+            }else{
+              notification.error({ message: "Something wrong to get reorder notification" });;
+            }
             
-        //   });
-          const { data, status, messages } = res_data;
-          // console.log({res_data_data});
-          notification.destroy();
-          if(status) {
-              messages.map(message => {
-                  return notification.success({ notification: "Re-ordering Notification", message: message });
-              });
-          }else{
-            notification.error({ message: "Something wrong to get reorder notification" });;
-          }
+          });
+          // const { data, status, messages } = res_data;
+          // // console.log({res_data_data});
+          // notification.destroy();
+          // if(status) {
+          //     messages.map(message => {
+          //         return notification.success({ notification: "Re-ordering Notification", message: message });
+          //     });
+          // }else{
+          //   notification.error({ message: "Something wrong to get reorder notification" });;
+          // }
     }
 
     const moveRow = useCallback(
