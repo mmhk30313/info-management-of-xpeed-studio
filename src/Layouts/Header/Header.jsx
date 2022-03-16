@@ -20,8 +20,8 @@ const Header = () => {
                     // subTitle="This is a subtitle"
                     // extra={[
                     subTitle={[
-                        <div style={{marginTop: 5}}>
-                            <Link style={{margin: '0 10px' , color: '#7B7975', fontSize: 16}} exact key={"1"} to="/">Table</Link>
+                        <div key={1} style={{marginTop: 5}}>
+                            <Link style={{margin: '0 10px' , color: '#7B7975', fontSize: 16}} key={"1"} to="/">Table</Link>
                             <Link style={{marginLeft: "10px", color: '#7B7975', fontSize: 16}} key={"2"} to="/get-form">Get Form</Link>
                             <a style={{marginLeft: "10px", color: '#7B7975', fontSize: 16}} key={"3"} >Update Form</a>
                         </div>
