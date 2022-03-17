@@ -1,0 +1,35 @@
+
+.responsive-container{
+  width: 60%;
+}
+
+.brand-color{
+  color: #2352a4;
+}
+
+.brand-bg{
+  background-color: #1D3B70;;
+}
+
+@media only screen and (max-width: 720px) {
+  .responsive-container{
+    width: 100% !important;
+  }
+}
+
+/* ::-webkit-scrollbar {
+  display: none;
+} */
+
+::-webkit-scrollbar {
+  width: 3.5px;
+}
+ 
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+ 
+::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+}

@@ -1,5 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect, Fragment } from 'react';
 import { Table, notification, Card, Divider, Alert } from 'antd';
+import Marquee from 'react-fast-marquee';
+import { TextLoop } from 'react-text-loop-next';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
@@ -108,11 +110,21 @@ const List = ({info_data, columns, loading}) => {
     return (
       <Fragment>
         <Divider>Table List</Divider>
-        <Card title={<Alert message="We can sort, search and reorder our table data. After reordering an api will be called by post method but we can't get response." type="success" />}>
+        <Card title={<Alert type={data.length ? "info" : 'warning'} banner ={data.length ? true : false}
+              description={<Marquee speed={40} pauseOnHover gradient={true}>
+                {
+                  data.length 
+                  ? "We can sort, search and reorder our table data. After reordering an api will be called by post method but we can't get response."
+                  : "No data found"
+                }
+            </Marquee>} />
+          }
+        >
           <DndProvider backend={HTML5Backend}>
               <Table
                 columns={columns}
                 dataSource={data}
+                scroll={{ x: 720 }}
                 rowKey={record => record.key}
                 loading={loading}
                 components={components}

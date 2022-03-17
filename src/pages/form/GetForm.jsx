@@ -30,13 +30,16 @@ class GetForm extends Component {
 
     render() {
         return (
-            <Card title={!this.state.isEditable ? "Add Form" : "Updated Form"} loading={this.state.loading}>
+            <Card loading={this.state.loading} title={<div className='text-center text-uppercase' style={{color: '#1D3B70'}}>{!this.state.isEditable ? "Add Form" : "Updated Form"}</div>}>
                 {
                     // !this.state.loading ?
                     // : null
-                    this.state.id
-                    ? <EditForm id={this.state.id}/>
-                    :  <AddForm />
+                    !this.state.loading
+                    ?   this.state.id
+                        ? <EditForm id={this.state.id}/>
+                        :  <AddForm />
+                    : null
+                    
                 }
             </Card>
         );
