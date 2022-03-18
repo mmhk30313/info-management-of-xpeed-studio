@@ -192,7 +192,7 @@ class EditForm extends Component {
       if(submit_res?.status) {
         console.log({submit_res});
         submit_res?.messages?.map(message => {
-          return notification.success({ notification: "Info Notification", message: message });
+          return notification.success({ top: 60, message: message });
         });
         setTimeout(() => {
           this.setState({
@@ -214,7 +214,7 @@ class EditForm extends Component {
         }, 1000);
       }else{
         submit_res?.messages?.map(message => {
-          return notification.error({ notification: "Info Notification", message: message });
+          return notification.error({ top: 60, message: message });
         });
       }
       
@@ -305,7 +305,7 @@ class EditForm extends Component {
       }
     }
     const {form_data, loading, email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data} = this.state;
-    console.log({email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data});
+    // console.log({email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data});
     return (
       <React.Fragment>
         <Skeleton loading={loading}>
@@ -319,7 +319,7 @@ class EditForm extends Component {
                           <label htmlFor={field?.html_attr?.id || ""}>{field?.label || field?.name || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <input type="number" name={field.name} 
                             onChange={(e) => {
-                              console.log({number_value: e.target.value});
+                              // console.log({number_value: e.target.value});
                               if(field?.validate){
                                 const flag = onInputValidation({e, key: "number", id: field?.id, myState: number, message: field?.validate || "Please enter valid input"});
                                 !flag && (e.target.value = field.value);
@@ -348,7 +348,7 @@ class EditForm extends Component {
                           <label htmlFor={field?.html_attr?.id || ""}>{field?.label || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <input type="text" name={field.name} 
                             onChange={(e) => {
-                              console.log({text_value: e.target.value});
+                              // console.log({text_value: e.target.value});
                               if(field?.validate){
                                 const flag = onInputValidation({e, key: "text", id: field?.id, myState: text, message: field?.validate || "Please enter valid input"});
                                 !flag && (e.target.value = field.value);
@@ -374,7 +374,7 @@ class EditForm extends Component {
                           <label htmlFor={field?.html_attr?.id || ""}>{field?.label || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <input type="email" name={field.name}
                             onChange={(e) => {
-                              console.log({email_value: e.target.value});
+                              // console.log({email_value: e.target.value});
                               if(field?.validate){
                                 const flag = onInputValidation({e, key: "email", id: field?.id, myState: email, message: field?.validate || "Please enter valid input"});
                                 !flag && (e.target.value = field.value);
@@ -398,7 +398,7 @@ class EditForm extends Component {
                           <label htmlFor={field?.html_attr?.id || ""}>{field?.label || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <input type="password" name={field.name}
                             onChange={(e) => {
-                              console.log({password_value: e.target.value});
+                              // console.log({password_value: e.target.value});
                               // if(field?.validate){
                               //   const flag = onInputValidation({e, key: "password", id: field?.id, myState: password, setMyState: setPassword, message: field?.validate || "Please enter valid input"});
                               //   !flag && (e.target.value = field.value);
@@ -424,7 +424,7 @@ class EditForm extends Component {
                           <label htmlFor={field?.html_attr?.id || ""}>{field?.label || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <select name={field.name}
                             onChange={(e) => {
-                              console.log({select_value: e.target.value});
+                              // console.log({select_value: e.target.value});
                               onInputValidation({e, key: "select", id: field?.id, myState: select});
                             }} 
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
@@ -522,7 +522,7 @@ class EditForm extends Component {
                           <label htmlFor={field?.html_attr?.id || ""}>{field?.label || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <textarea rows={3} name={field.name}
                             onChange={(e) => {
-                              console.log({textarea_value: e.target.value});
+                              // console.log({textarea_value: e.target.value});
                               if(field?.validate){
                                 const flag = onInputValidation({e, key: "textarea", id: field?.id, myState: textarea, message: field?.validate || "Please enter valid input"});
                                 !flag && (e.target.value = field.value);
@@ -540,7 +540,9 @@ class EditForm extends Component {
                     })
                 }
 
-                <button type="submit" className='btn btn-success text-uppercase'>Submit</button>
+                <div className='my-3'>
+                  <button type="submit" className='btn btn-success text-uppercase'>Update</button>
+                </div>
               </form>
             </Container>
           }

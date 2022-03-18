@@ -35,7 +35,7 @@ export default class Home extends React.Component {
         notification.destroy();
         if(status) {
             messages.map(message => {
-                return notification.success({ notification: "Info Notification",message: message });
+                return notification.success({ top: 60, message: message });
             });
             const {headers, rows} = data;
             const dataSource = [];
@@ -62,7 +62,7 @@ export default class Home extends React.Component {
                                 <div>
                                     {
                                         entry[1].title === "Action"
-                                        ? <Link to={"/get-form?id="+record.id}>{text || ""}</Link>
+                                        ? <Link className='text-decoration-none text-uppercase text-bold brand-color' to={"/get-form?id="+record.id}>{text || ""}</Link>
                                         : text || ""
                                     }
                                     
@@ -96,7 +96,7 @@ export default class Home extends React.Component {
 
         }else{
             // console.log({messages});
-            notification.error({notification: "Info Notification", message: messages || 'Something went wrong'});
+            notification.error({top: 60, message: messages || 'Something went wrong'});
             setTimeout(() => {
                 this.setState({loading: false});
             }, 1000);

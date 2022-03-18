@@ -30,7 +30,8 @@ class GetForm extends Component {
 
     render() {
         return (
-            <Card loading={this.state.loading} title={<div className='text-center text-uppercase' style={{color: '#1D3B70'}}>{!this.state.isEditable ? "Add Form" : "Updated Form"}</div>}>
+            <Card title={<div className='text-center text-uppercase' style={{color: '#1D3B70'}}>
+                {!this.state.isEditable ? "Save Info" : "Updated Info"}</div>}>
                 {
                     // !this.state.loading ?
                     // : null

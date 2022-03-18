@@ -25,8 +25,8 @@ const Header = () => {
                                 navbarScroll
                             >
                                 <Link style={{margin: '0 10px', fontWeight: 'bold',color: '#AFAFAF', fontSize: 16, textDecoration: 'none'}} key={"1"} to="/">Table</Link>
-                                <Link style={{marginLeft: "10px", fontWeight: 'bold',color: '#AFAFAF', fontSize: 16, textDecoration: 'none'}} key={"2"} to="/get-form">Get Form</Link>
-                                <Link style={{marginLeft: "10px", fontWeight: 'bold',color: '#AFAFAF', fontSize: 16, textDecoration: 'none'}} key={"3"} to={'/get-form'} >Update Form</Link>
+                                <Link style={{margin: "0 10px", fontWeight: 'bold',color: '#AFAFAF', fontSize: 16, textDecoration: 'none'}} key={"2"} to="/get-form">Get Form</Link>
+                                <Link style={{marginLeft: "0 10px", fontWeight: 'bold',color: '#AFAFAF', fontSize: 16, textDecoration: 'none'}} key={"3"} to={'/get-form'} >Update Form</Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

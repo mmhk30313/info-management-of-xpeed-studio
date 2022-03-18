@@ -1,7 +1,7 @@
 import React, { useState, useCallback, useRef, useEffect, Fragment } from 'react';
 import { Table, notification, Card, Divider, Alert } from 'antd';
 import Marquee from 'react-fast-marquee';
-import { TextLoop } from 'react-text-loop-next';
+// import { TextLoop } from 'react-text-loop-next';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import update from 'immutability-helper';
@@ -66,10 +66,10 @@ const List = ({info_data, columns, loading}) => {
       notification.destroy();
       if(status) {
           messages.map(message => {
-              return notification.success({ notification: "Re-ordering Notification", message: message });
+              return notification.success({top: 60, notification: "Re-ordering Notification", message: message });
           });
       }else{
-        notification.error({ message: "Something wrong to get reorder notification" });;
+        notification.error({top: 60, message: "Something wrong to get reorder notification" });;
       }
       // await axios.get('http://localhost/api/reorder.php?id='+data.id).then(res_data => {
         // await axios.post('http://localhost/api/reorder.php', {id: 141}).then(res_data => {
@@ -114,8 +114,8 @@ const List = ({info_data, columns, loading}) => {
               description={<Marquee speed={40} pauseOnHover gradient={true}>
                 {
                   data.length 
-                  ? "We can sort, search and reorder our table data. After reordering an api will be called by post method but we can't get response."
-                  : "No data found"
+                  ? " We can sort, search and reorder our table data. After reordering an api will be called by post method with a simple payload to get a proper notification." + " "
+                  : "No data found for the table"
                 }
             </Marquee>} />
           }

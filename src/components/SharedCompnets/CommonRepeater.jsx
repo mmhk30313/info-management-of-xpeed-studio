@@ -56,7 +56,7 @@ const CommonRepeater = (props) => {
           setMyState(new_data);
           return true;
         }else if(message){
-          notification.warn({ message: message, duration: 1000 });
+          notification.warn({top: 60, message: message, duration: 1000 });
           return false;
         }else{
             // notification.warn({ message: `${key} is not valid`, duration: 1000 });
@@ -176,7 +176,7 @@ const CommonRepeater = (props) => {
                                 ...newField
                             }])
                         }}>
-                            Add New
+                            Add New {props?.repeater?.label}
                         </button>
                     </div>
                 {/* </Card> */}

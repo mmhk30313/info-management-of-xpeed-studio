@@ -40,7 +40,7 @@ class AddForm extends Component {
     notification.destroy();
     if(status) {
       // messages.map(message => {
-      //   return notification.success({ notification: "Info Notification",message: message });
+      //   return notification.success({ top: 60,message: message });
       // });
       const {fields} = data;
       this.setState({
@@ -162,14 +162,14 @@ class AddForm extends Component {
     });
 
     
-    form_data.repeater = repeater_data;
+    repeater_data?.length && (form_data.repeater = repeater_data);
     
     try {
       const submit_res = await update_data(form_data);
       if(submit_res?.status) {
         console.log({submit_res});
         submit_res?.messages?.map(message => {
-          return notification.success({ notification: "Info Notification", message: message });
+          return notification.success({ top: 60, message: message });
         });
         setTimeout(() => {
           this.setState({
@@ -191,7 +191,7 @@ class AddForm extends Component {
         }, 1000);
       }else{
         submit_res?.messages?.map(message => {
-          return notification.error({ notification: "Info Notification", message: message });
+          return notification.error({ top: 60, message: message });
         });
       }
       
@@ -256,6 +256,7 @@ class AddForm extends Component {
   setRepeaterData = (key, value) => {
     this.setState({ [key]: value });
   };
+
   render() {
     const onInputValidation = ({e, ...rest}) => {
       const {id, key, message, myState, setMyState} = rest;
@@ -282,13 +283,13 @@ class AddForm extends Component {
       }
     }
     const {form_data, loading, email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data} = this.state;
-    console.log({email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data});
+    // console.log({email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data});
     return (
       <React.Fragment>
         <Skeleton loading={loading}>
           {
             <Container className='mx-auto responsive-container' >
-              <form onSubmit={(e) => this.handleSubmit(e)} noValidate>
+              <form name="myForm" onSubmit={(e) => this.handleSubmit(e)}>
                 {
                     number?.map((field, idx) => {
                       return (
@@ -310,7 +311,8 @@ class AddForm extends Component {
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
                             defaultValue={field?.value || ""} 
-                            data-something={field["data-something"]} 
+                            data-something={field["data-something"]}
+                            placeholder={field?.html_attr?.placeholder || "Enter " + field?.name || ""}
                           />
                         </div>
                       )
@@ -337,8 +339,9 @@ class AddForm extends Component {
                             }}
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
-                            defaultValue={field?.value || ""} 
-                            data-something={field["data-something"]} 
+                            defaultValue={field?.default || field?.value || ""} 
+                            data-something={field["data-something"]}
+                            placeholder={field?.placeholder || "Enter " + field?.label || ""}
                           />
                         </div>
                       )
@@ -354,15 +357,16 @@ class AddForm extends Component {
                               console.log({email_value: e.target.value});
                               if(field?.validate){
                                 const flag = onInputValidation({e, key: "email", id: field?.id, myState: email, message: field?.validate || "Please enter valid input"});
-                                !flag && (e.target.value = field.value);
+                                // !flag && (e.target.value = field.value);
                               } else{
                                 onInputValidation({e, key: "email", id: field?.id, myState: email});
                               }
                             }}
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
-                            defaultValue={field?.value || ""} 
-                            data-something={field?.html_attr["data-something"]} 
+                            defaultValue={field?.default || field?.value || ""} 
+                            data-something={field?.html_attr["data-something"]}
+                            placeholder={field?.placeholder || "Enter " + field?.label || ""}
                           />
                         </div>
                       )
@@ -386,8 +390,9 @@ class AddForm extends Component {
                             }}
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
-                            defaultValue={field?.value || ""} 
-                            data-something={field?.html_attr["data-something"]} 
+                            defaultValue={field?.default || field?.value || ""} 
+                            data-something={field?.html_attr["data-something"]}
+                            placeholder={field?.placeholder || "Enter "}
                           />
                         </div>
                       )
@@ -406,9 +411,9 @@ class AddForm extends Component {
                             }} 
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
-                            defaultValue={field?.value || ""} 
+                            defaultValue={field?.default || field?.value || ""} 
                             data-something={field?.html_attr["data-something"]}
-                            placeholder={field?.placeholder || "Select an option"}
+                            placeholder={"Select an option"}
                           >
                             {
                               field?.options?.map((option) => {
@@ -438,8 +443,8 @@ class AddForm extends Component {
                                       }}
                                       className="form-check-input"  
                                       id={`${field?.html_attr?.id || ""}`}
-                                      defaultValue={option.key}
-                                      defaultChecked={field.value === option.key ? true : false}
+                                      defaultValue={option?.default || option?.key}
+                                      defaultChecked={field?.value === option?.key ? true : false}
                                       required={field?.required || false}
                                     />
                                     <label className="form-check-label" htmlFor={`${field?.html_attr?.id || ""}`}>{option.label}</label>
@@ -468,7 +473,7 @@ class AddForm extends Component {
                                         // console.log({checkbox_value: e.target.value});
                                         onInputValidation({e, key: "checkbox", id: field?.id, myState: checkbox});
                                       }}
-                                      defaultChecked={option?.value || false} 
+                                      defaultChecked={option?.default || option?.value || false} 
                                       className="form-check-input"  
                                       id={`${field?.html_attr?.id || ""}`} defaultValue={option.key}
                                       required={field?.required || false}
@@ -509,19 +514,24 @@ class AddForm extends Component {
                             }}
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
-                            defaultValue={field?.value || ""} 
-                            data-something={field?.html_attr["data-something"]} 
+                            defaultValue={field?.default || field?.value || ""} 
+                            data-something={field?.html_attr["data-something"]}
+                            placeholder={field?.placeholder || "Enter " + field?.label}
+
                           />
                         </div>
                       )
                     })
                 }
 
-                <button type="submit" className='btn btn-success text-uppercase'>Submit</button>
+                <div className='my-3'>
+                  <button type="submit" className='btn btn-success text-uppercase'>Save</button>
+                </div>
               </form>
             </Container>
           }
           
+        
         </Skeleton>
     </React.Fragment>
     )
