@@ -6,7 +6,8 @@
     *   api folder should be take placed into drive C: xampp > htdoc or wampp > www
     *   Start your xampp or wampp server
     *   After that clone this app 
-    *   Go to the app folder and npm install or yarn
+    *   Go to the app folder and "npm install" or "yarn"
+    *   To run the app, run in terminal "yarn start"/"yarn dev"/"npm start"
     *   It will work properly, inshaAllah
 
 ## Task Requirements & Details:
@@ -23,9 +24,10 @@ https://drive.google.com/file/d/11tH0cx1OvxI29OHOoYYDrANAr9OcZkZQ/vie w?usp=shar
 
 ## Instructions: 
 Unzip the given project in your local machine’s xampp or wamp’s htdocs or www folder. 
-- Put a index.php file with some texts in there
-- The bellow code  should be in .php file
+- See a list.php file with some texts in there
+- The bellow code  should be in all .php files
 #### header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+#####   Otherwise we can't use post method for api request 
 - Now test the following url - http://localhost/api/list.php if it is working then the project is working fine
 
 ### Useful articles: 
