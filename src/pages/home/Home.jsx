@@ -8,7 +8,7 @@ import { get_all_info } from '../../services/all_services';
 // import update from 'immutability-helper';
 import List from '../../components/List/List';
 import { Link } from 'react-router-dom';
-
+import edit from './../../assets/icon/edit-solid.svg';
 export default class Home extends React.Component {   
     constructor(props) {
         super(props);
@@ -45,7 +45,7 @@ export default class Home extends React.Component {
                 !row.extra_junk_field && dataSource.push(row);
             });
             const header_data = headers[0];
-            header_data['action'] = {title: 'Action', hidden: false};
+            header_data['action'] = {title: 'Action', hidden: false, align: 'center'};
             // console.log({rows, header_data, dataSource});
             const columns = headers.map((header) => {
                 const column_headers = [];
@@ -62,7 +62,10 @@ export default class Home extends React.Component {
                                 <div>
                                     {
                                         entry[1].title === "Action"
-                                        ? <Link className='text-decoration-none text-uppercase text-bold brand-color' to={"/get-form?id="+record.id}>{text || ""}</Link>
+                                        ? <Link className='text-decoration-none text-uppercase text-bold brand-color' to={"/get-form?id="+record.id}>
+                                            <img className="brand-color" height={15} src={edit} alt="Edit" /> 
+                                            {/* {text || ""} */}
+                                        </Link>
                                         : text || ""
                                     }
                                     
