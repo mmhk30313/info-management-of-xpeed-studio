@@ -25,7 +25,7 @@ https://drive.google.com/file/d/11tH0cx1OvxI29OHOoYYDrANAr9OcZkZQ/vie w?usp=shar
 Unzip the given project in your local machine’s xampp or wamp’s htdocs or www folder. 
 - Put a index.php file with some texts in there
 - The bellow code  should be in .php file
-####  - header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+#### header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
 - Now test the following url - http://localhost/api/list.php if it is working then the project is working fine
 
 ### Useful articles: 
