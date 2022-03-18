@@ -9,6 +9,15 @@
     *   Go to the app folder and "npm install" or "yarn"
     *   To run the app, run in terminal "yarn start"/"yarn dev"/"npm start"
     *   It will work properly, inshaAllah
+##  Used Tools & Technologies:
+    * JavaScript
+    * ReactJs
+    * Antd (Ant Design React UI Library)
+    * Axios (A promise-based HTTP Client for node.js and the browser)
+    * React DND (For Drag & Drop)
+    * Bootstrap
+    * CSS3
+    * HTML5
 
 ## Task Requirements & Details:
 
