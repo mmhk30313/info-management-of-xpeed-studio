@@ -1,4 +1,4 @@
-import { notification, Skeleton, Card } from 'antd';
+import { notification, Skeleton } from 'antd';
 import React, {Component} from 'react'
 // import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap';
@@ -300,7 +300,7 @@ class EditForm extends Component {
         this.setState({[key]: new_data});
         return true;
       }else{
-        notification.warn({ message: message, duration: 1000 });
+        notification.warn({ top: 60, message: message, duration: 1000 });
         return false;
       }
     }
@@ -311,7 +311,7 @@ class EditForm extends Component {
         <Skeleton loading={loading}>
           {
             <Container className='mx-auto responsive-container' >
-              <form onSubmit={(e) => this.handleSubmit(e)} noValidate>
+              <form onSubmit={(e) => this.handleSubmit(e)} noValidate={false}>
                 {
                     number?.map((field, idx) => {
                       return (
@@ -333,7 +333,8 @@ class EditForm extends Component {
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
                             value={field?.value || ""} 
-                            data-something={field["data-something"]} 
+                            data-something={field["data-something"]}
+                            placeholder={field?.placeholder || field?.html_attr?.placeholder || "Enter " + field?.label || field?.name}
                           />
                         </div>
                       )
@@ -362,6 +363,7 @@ class EditForm extends Component {
                             required={field?.required || false}
                             value={field?.value || ""} 
                             data-something={field["data-something"]} 
+                            placeholder={field?.placeholder || field?.html_attr?.placeholder || "Enter " + field?.label || field?.name}
                           />
                         </div>
                       )
@@ -377,7 +379,7 @@ class EditForm extends Component {
                               // console.log({email_value: e.target.value});
                               if(field?.validate){
                                 const flag = onInputValidation({e, key: "email", id: field?.id, myState: email, message: field?.validate || "Please enter valid input"});
-                                !flag && (e.target.value = field.value);
+                                // !flag && (e.target.value = field.value);
                               } else{
                                 onInputValidation({e, key: "email", id: field?.id, myState: email});
                               }
@@ -386,6 +388,7 @@ class EditForm extends Component {
                             required={field?.required || false}
                             value={field?.value || ""} 
                             data-something={field?.html_attr["data-something"]} 
+                            placeholder={field?.placeholder || field?.html_attr?.placeholder || "Enter " + field?.label || field?.name}
                           />
                         </div>
                       )
@@ -410,7 +413,8 @@ class EditForm extends Component {
                             className={`${field?.html_attr?.class || ""} form-control my-2`} id={`${field?.html_attr?.id || ""}`} 
                             required={field?.required || false}
                             value={field?.value || ""} 
-                            data-something={field?.html_attr["data-something"]} 
+                            data-something={field?.html_attr["data-something"]}
+                            placeholder={field?.placeholder || field?.html_attr?.placeholder || "Enter " + field?.label || field?.name} 
                           />
                         </div>
                       )
@@ -534,6 +538,7 @@ class EditForm extends Component {
                             required={field?.required || false}
                             value={field?.value || ""} 
                             data-something={field?.html_attr["data-something"]} 
+                            placeholder={field?.placeholder || field?.html_attr?.placeholder || "Enter " + field?.label || field?.name} 
                           />
                         </div>
                       )

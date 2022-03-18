@@ -1,72 +1,56 @@
-# API LINK: https://drive.google.com/file/d/1yyGx833HnXhgYSx_elV2uo-oacPAHF7x/view?usp=sharing
-# Getting Started with Create React App
+# Project Name:
+## info-management-of-xpeed-studio
+# API LINK: 
+###  https://drive.google.com/drive/folders/1mX3sqB6gZB_1IXrjv-KlS-aiRgk9JBR_?usp=sharing
+# Following Step For Getting Started with This React App 
+    *   api folder should be take placed into drive C: xampp > htdoc or wampp > www
+    *   Start your xampp or wampp server
+    *   After that clone this app 
+    *   Go to the app folder and npm install or yarn
+    *   It will work properly, inshaAllah
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Task Requirements & Details:
 
-## Available Scripts
+Create a simple CRUD frontend with the following requirements. You can use either react or vue, the choice is yours. 
+● There will be three pages- 
+○ List - the saved data will be shown here as a table. Users can reorder each row and sort certain columns (defined in API). Users will be able to search among these data. 
+○ Create - On this page, a form will be shown and users can enter new data through the form. All of the fields will be defined in the API. 
+○ Update - There will be a form on this page too and it’s values & fields will be defined in the API. Users will update/ edit any existing data here. 
+● After clicking the submit button, there will be a loading icon inside the button and the button should be disabled. After getting any response from the server end, the button will be enabled again. 
+### API - 
+https://drive.google.com/file/d/11tH0cx1OvxI29OHOoYYDrANAr9OcZkZQ/vie w?usp=sharing 
 
-In the project directory, you can run:
 
-### `npm start`
+## Instructions: 
+Unzip the given project in your local machine’s xampp or wamp’s htdocs or www folder. 
+- Put a index.php file with some texts in there
+- The bellow code  should be in .php file
+####  - header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+- Now test the following url - http://localhost/api/list.php if it is working then the project is working fine
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Useful articles: 
+https://themeisle.com/blog/install-xampp-and-wordpress-locally/ https://blog.templatetoaster.com/how-to-install-wamp/ 
+https://wpshout.com/quick-guides/how-to-install-mamp-on-your-mac/ https://www.wikihow.com/Install-XAMPP-on-Linux/ 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+##  API endpoints - 
+1. To get the form structure with data : http://localhost/api/get_form.php a. Structure looks like - https://prnt.sc/uge56s 
+    b. Number of fields will be change on every call 
+    c. To get the content of edit form pass id param in url like http://localhost/api/get_form.php?id=67 
+    d. With id form will be returned with values https://prnt.sc/uge8d0 
+2. List >> structure with data : http://localhost/api/list.php a. Structure will look like this https://prnt.sc/uge8u9 
+    b. Headers key contains the table header info 
+    c. Rows key contains the rows of the table 
+    d. Each row could have extra field or missing field 
+    https://prnt.sc/uge9i2 
+3. To save & update the form: http://localhost/api/submit_form.php 
+    a. It will return like this https://prnt.sc/ugeaem 
+    b. If status is success show the messages as success, else show messages as danger/error 
+    c. Please be noted id will be always static data 
+4. Reorder the list : http://localhost/api/reorder.php 
+    a. It will return like this https://prnt.sc/ugeazr 
+    b. If status is success show the messages as success, else show messages as danger/error 
+####    Please be noted all data return by API is static. 
+####    Project Clarification video: 
+- https://www.youtube.com/watch?v=HuRSGAGEdUE
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# info-management-of-xpeed-studio
