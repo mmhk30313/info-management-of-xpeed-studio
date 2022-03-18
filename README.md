@@ -3,7 +3,7 @@
 # API LINK: 
 ###  https://drive.google.com/drive/folders/1mX3sqB6gZB_1IXrjv-KlS-aiRgk9JBR_?usp=sharing
 # Following Step For Getting Started with This React App 
-    *   api folder should be take placed into drive C: xampp > htdoc or wampp > www
+    *   api folder should be taken place into drive C: xampp > htdoc or wampp > www
     *   Start your xampp or wampp server
     *   After that clone this app 
     *   Go to the app folder and "npm install" or "yarn"
