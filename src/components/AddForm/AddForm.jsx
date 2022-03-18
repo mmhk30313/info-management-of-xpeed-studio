@@ -1,4 +1,4 @@
-import { notification, Skeleton, Card } from 'antd';
+import { notification, Skeleton } from 'antd';
 import React, {Component} from 'react'
 // import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap';
@@ -87,9 +87,16 @@ class AddForm extends Component {
         }else if(value.type === 'radio') {
           this.setState({radio: [...this.state.radio, value]});
         } else if(value.type === 'repeater') {
-          console.log({repeater_values: value?.value});
+          // console.log({repeater_values: value});
+          const repeater_fields = Object.keys(value.repeater_fields);
+          const value_keys = {};
+          repeater_fields.map(repeater_field => {
+            value_keys[repeater_field] = "";
+          });
+          value.value = [...value?.value, value_keys];
+          // console.log({values: value?.value});
           this.setState({repeater_data: [...this.state.repeater_data, {[value.name]: value?.value?.map((cur_value, idx) => {
-            const keys = Object.keys(cur_value);
+            // const keys = Object.keys(cur_value);
             // if(isReset){
             //   keys.map(key => {
             //     return  cur_value[key] = '';
@@ -117,7 +124,7 @@ class AddForm extends Component {
   }
 
   handleSubmit = async (form) => {
-    const {text, email, password, checkbox, radio, select, number, textarea, repeater_data, repeater} = this.state;
+    const {text, email, password, checkbox, radio, select, number, textarea, repeater_data} = this.state;
     form.preventDefault();
     const form_data = {};
     text.map(cur_text => {
@@ -259,7 +266,7 @@ class AddForm extends Component {
 
   render() {
     const onInputValidation = ({e, ...rest}) => {
-      const {id, key, message, myState, setMyState} = rest;
+      const {id, key, message, myState} = rest;
       const { value } = e.target;
       // console.log('Input value: ', value);
    
@@ -282,7 +289,7 @@ class AddForm extends Component {
         return false;
       }
     }
-    const {form_data, loading, email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data} = this.state;
+    const { loading, email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data} = this.state;
     // console.log({email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data});
     return (
       <React.Fragment>
@@ -294,7 +301,7 @@ class AddForm extends Component {
                     number?.map((field, idx) => {
                       return (
                         <div key={field.name+idx} className="form-group my-2">
-                          <label htmlFor={field?.html_attr?.id || ""}>{field?.label || field?.name || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
+                          <label className='text-uppercase' htmlFor={field?.html_attr?.id || ""}>{field?.label || field?.name || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <input type="number" name={field.name} 
                             onChange={(e) => {
                               console.log({number_value: e.target.value});
@@ -356,7 +363,8 @@ class AddForm extends Component {
                             onChange={(e) => {
                               console.log({email_value: e.target.value});
                               if(field?.validate){
-                                const flag = onInputValidation({e, key: "email", id: field?.id, myState: email, message: field?.validate || "Please enter valid input"});
+                                onInputValidation({e, key: "email", id: field?.id, myState: email, message: field?.validate || "Please enter valid input"});
+                                // const flag = onInputValidation({e, key: "email", id: field?.id, myState: email, message: field?.validate || "Please enter valid input"});
                                 // !flag && (e.target.value = field.value);
                               } else{
                                 onInputValidation({e, key: "email", id: field?.id, myState: email});

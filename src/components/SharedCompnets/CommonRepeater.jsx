@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Card, Button, notification, Collapse } from 'antd';
+import { Button, notification, Collapse } from 'antd';
 const { Panel } = Collapse;
 
 const CommonRepeater = (props) => {
@@ -13,24 +13,24 @@ const CommonRepeater = (props) => {
     const [isLastOne, setIsLastOne] = useState(false);
 
     useEffect(() => {
-        const {repeater_fields, value: field_values, required, name, label, html_attr} = props.repeater;
+        const {repeater_fields, value: field_values} = props?.repeater;
         setRepeater_fields(repeater_fields);
         field_values?.map((value, idx) => value.key = idx);
         const new_field_keys = Object.keys(repeater_fields);
         const new_field_values = {};
         new_field_keys.map((key) => {
-            new_field_values[key] = "";
+            return new_field_values[key] = "";
         });
         setNewField(new_field_values);
         // console.log({repeaters});
         setLastTrackId(field_values?.length || 0);
         setValues(field_values);
 
-    }, [""]);
+    }, [repeater_key]);
 
     useEffect(() => {
         // const { name, label} = props.repeater;
-        const filter_data = repeaters.filter(field => Object.keys(field)[0] != repeater_key);
+        const filter_data = repeaters.filter(field => Object.keys(field)[0] !== repeater_key);
         // const current_data = repeaters.find(field => Object.keys(field)[0] === repeater_key);
         // console.log({filter_data, current_data});
         setRepeaterData("repeater_data", [...filter_data, {[repeater_key]: values}]);
@@ -40,7 +40,7 @@ const CommonRepeater = (props) => {
     const onInputValidation = ({e, ...rest}) => {
         const {id, key, type, message, myState, setMyState} = rest;
         const { value } = e.target;
-        // console.log('Input value: ', value);
+        console.log('Input value: ', value);
      
         const regex = {text: /^[A-Za-z ]+$/, email: /^\w+([\.-]?\w+)@\w+([\.-]?\w+)(\.\w{2,3})+$/, number: /^[0-9]*$/};
 
@@ -179,7 +179,6 @@ const CommonRepeater = (props) => {
                             Add New {props?.repeater?.label}
                         </button>
                     </div>
-                {/* </Card> */}
             </Panel>
         </Collapse>
     );

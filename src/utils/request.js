@@ -40,7 +40,7 @@ export const request = (link, params) => {
         data: params?.body,
     });
     // params?.method === 'post' && ( fetchConfig.headers);
-    console.log({fetchConfig});
+    // console.log({fetchConfig});
     
     // console.log({url});
     

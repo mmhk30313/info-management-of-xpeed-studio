@@ -97,9 +97,6 @@ class EditForm extends Component {
         }else if(value.type === 'email') {
           this.setState({email: [...this.state.email, value]});
         }else if(value.type === 'password') {
-          // if(this.state.isReset) {
-          //   value.value = '';
-          // }
           this.setState({password: [...this.state.password, value]});
         }else if(value.type === 'textarea') {
           this.setState({textarea: [...this.state.textarea, value]});
@@ -225,6 +222,7 @@ class EditForm extends Component {
       // form.resetFields();
       
     }
+
     // const repeat_data = [];
     // repeater_data.map(cur_repeater => {
     //   // console.log({cur_repeater});
@@ -311,12 +309,12 @@ class EditForm extends Component {
         <Skeleton loading={loading}>
           {
             <Container className='mx-auto responsive-container' >
-              <form onSubmit={(e) => this.handleSubmit(e)} noValidate={false}>
+              <form name="myForm" onSubmit={(e) => this.handleSubmit(e)} noValidate={false}>
                 {
                     number?.map((field, idx) => {
                       return (
                         <div key={field.name+idx} className="form-group my-2">
-                          <label htmlFor={field?.html_attr?.id || ""}>{field?.label || field?.name || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
+                          <label className='text-uppercase' htmlFor={field?.html_attr?.id || ""}>{field?.label || field?.name || ""} <span style={{color: 'red'}}>{field?.required && "*"}</span></label>
                           <input type="number" name={field.name} 
                             onChange={(e) => {
                               // console.log({number_value: e.target.value});

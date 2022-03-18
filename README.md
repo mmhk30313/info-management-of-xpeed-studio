@@ -13,13 +13,13 @@
 ## Task Requirements & Details:
 
 Create a simple CRUD frontend with the following requirements. You can use either react or vue, the choice is yours. 
-● There will be three pages- 
-○ List - the saved data will be shown here as a table. Users can reorder each row and sort certain columns (defined in API). Users will be able to search among these data. 
-○ Create - On this page, a form will be shown and users can enter new data through the form. All of the fields will be defined in the API. 
-○ Update - There will be a form on this page too and it’s values & fields will be defined in the API. Users will update/ edit any existing data here. 
-● After clicking the submit button, there will be a loading icon inside the button and the button should be disabled. After getting any response from the server end, the button will be enabled again. 
+- There will be three pages- 
+- List - the saved data will be shown here as a table. Users can reorder each row and sort certain columns (defined in API). Users will be able to search among these data. 
+- Create - On this page, a form will be shown and users can enter new data through the form. All of the fields will be defined in the API. 
+- Update - There will be a form on this page too and it’s values & fields will be defined in the API. Users will update/ edit any existing data here. 
+- After clicking the submit button, there will be a loading icon inside the button and the button should be disabled. After getting any response from the server end, the button will be enabled again. 
 ### API - 
-https://drive.google.com/file/d/11tH0cx1OvxI29OHOoYYDrANAr9OcZkZQ/vie w?usp=sharing 
+https://drive.google.com/file/d/1B2M7OeqN-ywt1-lQVZqbdEA4eazmquPc/view?usp=sharing 
 
 
 ## Instructions: 
@@ -27,7 +27,7 @@ Unzip the given project in your local machine’s xampp or wamp’s htdocs or ww
 - See a list.php file with some texts in there
 - The bellow code  should be in all .php files
 #### header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-#####   Otherwise we can't use post method for api request 
+##### Noted: Don't worry that code is included by me. If it is missing then please include it. Otherwise we can't use post method for api request 
 - Now test the following url - http://localhost/api/list.php if it is working then the project is working fine
 
 ### Useful articles: 

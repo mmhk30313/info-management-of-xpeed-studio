@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card} from 'antd';
+import {Card, Spin} from 'antd';
 import AddForm from '../../components/AddForm/AddForm';
 import EditForm from '../../components/EditForm/EditForm';
 class GetForm extends Component {
@@ -16,7 +16,7 @@ class GetForm extends Component {
         const query_string = window.location.search;
         const path = new URLSearchParams(query_string);
         const param = parseInt(path.get("id"));
-        console.log({query_string, param});
+        // console.log({query_string, param});
         if(param){
             this.setState({id: param}, () => {
                 this.setState({loading: false, isEditable: true})
@@ -39,7 +39,7 @@ class GetForm extends Component {
                     ?   this.state.id
                         ? <EditForm id={this.state.id}/>
                         :  <AddForm />
-                    : null
+                    : <Spin className='d-flex justify-content-center align-self-center' />
                     
                 }
             </Card>

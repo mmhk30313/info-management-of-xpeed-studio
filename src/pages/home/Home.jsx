@@ -43,6 +43,7 @@ export default class Home extends React.Component {
                 row.key = idx;
                 row.action = "Update";
                 !row.extra_junk_field && dataSource.push(row);
+                return row;
             });
             const header_data = headers[0];
             header_data['action'] = {title: 'Action', hidden: false, align: 'center'};
@@ -63,7 +64,7 @@ export default class Home extends React.Component {
                                     {
                                         entry[1].title === "Action"
                                         ? <Link className='text-decoration-none text-uppercase text-bold brand-color' to={"/get-form?id="+record.id}>
-                                            <img className="brand-color" height={15} src={edit} alt="Edit" /> 
+                                            <img height={15} src={edit} alt="Edit" /> 
                                             {/* {text || ""} */}
                                         </Link>
                                         : text || ""
@@ -72,6 +73,7 @@ export default class Home extends React.Component {
                                 </div>
                             )
                         },
+                        align: entry[1].title === "Action" ? 'center' : 'left',
                     }
 
                     entry[1].sortable && entry[0] === "id" 
