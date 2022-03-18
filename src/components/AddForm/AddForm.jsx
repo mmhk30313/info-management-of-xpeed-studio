@@ -533,7 +533,7 @@ class AddForm extends Component {
                 }
 
                 <div className='my-3'>
-                  <button type="submit" className='btn btn-success text-uppercase'>Save</button>
+                  <button type="submit" className='btn btn-success text-uppercase'>Submit</button>
                 </div>
               </form>
             </Container>

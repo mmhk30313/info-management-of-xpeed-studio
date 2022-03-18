@@ -544,7 +544,7 @@ class EditForm extends Component {
                 }
 
                 <div className='my-3'>
-                  <button type="submit" className='btn btn-success text-uppercase'>Update</button>
+                  <button type="submit" className='btn btn-success text-uppercase'>Submit</button>
                 </div>
               </form>
             </Container>
