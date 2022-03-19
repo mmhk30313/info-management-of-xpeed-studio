@@ -1,4 +1,4 @@
-import { notification, Skeleton } from 'antd';
+import { Button, notification, Skeleton } from 'antd';
 import React, {Component} from 'react'
 // import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap';
@@ -131,7 +131,7 @@ class EditForm extends Component {
       console.log({error});
     } finally {
       setTimeout(() => {
-        this.setState({loading: false});
+        this.setState({loading: false, isReset: false});
       }, 1000);
     }
   }
@@ -139,6 +139,7 @@ class EditForm extends Component {
   handleSubmit = async (form) => {
     const {text, email, password, checkbox, radio, select, number, textarea, repeater_data, repeater} = this.state;
     form.preventDefault();
+    this.setState({isReset: true});
     const form_data = {};
     text.map(cur_text => {
       // console.log({["text_value"+cur_text.id]: form.target[cur_text.name].value});
@@ -205,10 +206,10 @@ class EditForm extends Component {
             textarea:         [],
             repeater:         [],
             repeater_data:    [],
-            isReset:          false,
+            // isReset:          false,
             loading:          true,
           },() => this.loadData())
-        }, 1000);
+        }, 5000);
       }else{
         submit_res?.messages?.map(message => {
           return notification.error({ top: 60, message: message });
@@ -279,7 +280,7 @@ class EditForm extends Component {
   };
   render() {
     const onInputValidation = ({e, ...rest}) => {
-      const {id, key, message, myState, setMyState} = rest;
+      const {id, key, message, myState} = rest;
       const { value } = e.target;
       // console.log('Input value: ', value);
    
@@ -302,8 +303,9 @@ class EditForm extends Component {
         return false;
       }
     }
-    const {form_data, loading, email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data} = this.state;
+    const {isReset, loading, email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data} = this.state;
     // console.log({email, text, number, select, password, radio, textarea, checkbox, repeater, repeater_data});
+    console.log({isReset});
     return (
       <React.Fragment>
         <Skeleton loading={loading}>
@@ -544,8 +546,11 @@ class EditForm extends Component {
                 }
 
                 <div className='my-3'>
-                  <button type="submit" className='btn btn-success text-uppercase'>Submit</button>
+                  <Button type="primary" loading={isReset} disabled={isReset} htmlType='submit' className='text-uppercase'>Submit</Button>
                 </div>
+                {/* <div className='my-3'>
+                  <button type="submit" className='btn btn-success text-uppercase'>Submit</button>
+                </div> */}
               </form>
             </Container>
           }
